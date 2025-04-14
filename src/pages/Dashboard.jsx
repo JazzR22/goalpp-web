@@ -4,6 +4,7 @@ import MonthNavigator from '../components/MonthNavigator'
 import AddGoalButton from '../components/AddGoalButton'
 import { useToast } from '../context/ToastContext'
 import DeleteButton from '../components/DeleteButton'
+import { useConfirm } from '../context/ConfirmContext'
 
 
 export default function Dashboard() {
@@ -13,6 +14,7 @@ export default function Dashboard() {
   const [year, setYear] = useState(new Date().getFullYear())
   const token = localStorage.getItem('token')
   const { pushToast } = useToast()
+  const { confirm } = useConfirm()
 
   useEffect(() => {
     if (!token) {
