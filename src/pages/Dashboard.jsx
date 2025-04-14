@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import MonthNavigator from '../components/MonthNavigator'
+import AddGoalButton from '../components/AddGoalButton'
 
 export default function Dashboard() {
   const [goals, setGoals] = useState([])
@@ -35,11 +36,38 @@ export default function Dashboard() {
     )
   }, [goals, month, year])
 
+  const handleCreateGoal = async ({ title, startDate, endDate }) => {
+    try {
+      const res = await fetch('http://localhost:5000/api/goals', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ title, startDate, endDate })
+      })
+  
+      const data = await res.json()
+  
+      if (!res.ok) {
+        alert(data.error || 'Failed to create goal')
+        return
+      }
+  
+      setGoals(prev => [...prev, data])
+    } catch (err) {
+      console.error('Failed to create goal:', err)
+    }
+  }  
+
   return (
     <div style={{ padding: '2rem' }}>
       <h1>Dashboard</h1>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <MonthNavigator month={month} year={year} setMonth={setMonth} setYear={setYear} />
+        <AddGoalButton onAdd={handleCreateGoal} />
+      </div>
 
-      <MonthNavigator month={month} year={year} setMonth={setMonth} setYear={setYear} />
       {monthGoals.length === 0 ? (
         <p>No goals for this month</p>
       ) : (
