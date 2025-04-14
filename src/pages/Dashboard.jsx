@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import '../styles/Dashboard.css'
 import MonthNavigator from '../components/MonthNavigator'
 import AddGoalButton from '../components/AddGoalButton'
 
@@ -61,20 +62,21 @@ export default function Dashboard() {
   }  
 
   return (
-    <div style={{ padding: '2rem' }}>
+    <div className="dashboard-container">
       <h1>Dashboard</h1>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+  
+      <div className="dashboard-header">
         <MonthNavigator month={month} year={year} setMonth={setMonth} setYear={setYear} />
         <AddGoalButton onAdd={handleCreateGoal} />
       </div>
-
+  
       {monthGoals.length === 0 ? (
         <p>No goals for this month</p>
       ) : (
         monthGoals.map(goal => (
-          <div key={goal._id} style={{ marginBottom: '2rem' }}>
+          <div key={goal._id} className="goal-block">
             <h3>{goal.title}</h3>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+            <div className="goal-days">
               {goal.monthData.days.map(day => (
                 <label key={day.day}>
                   <input
@@ -91,4 +93,5 @@ export default function Dashboard() {
       )}
     </div>
   )
+  
 }

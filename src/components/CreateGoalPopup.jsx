@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { DateRange } from 'react-date-range'
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
+import '../styles/CreateGoalPopup.css'
 
 export default function CreateGoalPopup({ onClose, onCreate }) {
   const [title, setTitle] = useState('')
@@ -29,10 +30,10 @@ export default function CreateGoalPopup({ onClose, onCreate }) {
   }
 
   return (
-    <div style={styles.overlay}>
-      <div style={styles.popup}>
+    <div className="popup-overlay">
+      <div className="popup">
         <h3>➕ New Goal</h3>
-        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        <form onSubmit={handleSubmit}>
           <input
             type="text"
             placeholder="Goal title"
@@ -51,7 +52,7 @@ export default function CreateGoalPopup({ onClose, onCreate }) {
             minDate={new Date()}
           />
 
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <div className="popup-buttons">
             <button type="submit">Create</button>
             <button type="button" onClick={onClose}>Cancel</button>
           </div>
@@ -59,23 +60,4 @@ export default function CreateGoalPopup({ onClose, onCreate }) {
       </div>
     </div>
   )
-}
-
-const styles = {
-  overlay: {
-    position: 'fixed',
-    top: 0, left: 0, right: 0, bottom: 0,
-    background: 'rgba(0,0,0,0.5)',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    zIndex: 9999
-  },
-  popup: {
-    background: '#fff',
-    padding: '2rem',
-    borderRadius: '8px',
-    width: '720px',
-    boxShadow: '0 0 10px rgba(0,0,0,0.3)'
-  }
 }
