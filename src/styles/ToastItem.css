@@ -1,0 +1,10 @@
+.toast {
+    color: rgb(146, 146, 146);
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+    width: max-content;
+    max-width: 300px;
+    transition: all 0.3s ease;
+  }  

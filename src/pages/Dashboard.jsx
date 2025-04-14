@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import '../styles/Dashboard.css'
 import MonthNavigator from '../components/MonthNavigator'
 import AddGoalButton from '../components/AddGoalButton'
+import { useToast } from '../context/ToastContext'
 
 export default function Dashboard() {
   const [goals, setGoals] = useState([])
@@ -9,6 +10,7 @@ export default function Dashboard() {
   const [month, setMonth] = useState(new Date().getMonth())
   const [year, setYear] = useState(new Date().getFullYear())
   const token = localStorage.getItem('token')
+  const { pushToast } = useToast()
 
   useEffect(() => {
     if (!token) {
@@ -51,13 +53,14 @@ export default function Dashboard() {
       const data = await res.json()
   
       if (!res.ok) {
-        alert(data.error || 'Failed to create goal')
+        pushToast('Failed to create goal')
         return
       }
   
       setGoals(prev => [...prev, data])
+      pushToast(`Goal "${title}" created!`, 'success')
     } catch (err) {
-      console.error('Failed to create goal:', err)
+      pushToast('Network error when create goal', 'error')
     }
   }  
 
@@ -75,7 +78,7 @@ export default function Dashboard() {
       const data = await res.json()
   
       if (!res.ok) {
-        alert(data.error || 'Failed to update day')
+        pushToast('Failed to update day')
         return
       }
   
@@ -83,8 +86,9 @@ export default function Dashboard() {
       setGoals(prev =>
         prev.map(g => (g._id === goalId ? data.goal : g))
       )
+      pushToast('Day updated ', 'success')
     } catch (err) {
-      console.error('Error updating day:', err)
+      pushToast('Network error when updating day', 'error')
     }
   }  
 
