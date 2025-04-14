@@ -3,7 +3,7 @@ import { DateRange } from 'react-date-range'
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
 
-export default function CrearGoalPopup({ onClose, onCreate }) {
+export default function CreateGoalPopup({ onClose, onCreate }) {
   const [title, setTitle] = useState('')
   const [range, setRange] = useState([
     {

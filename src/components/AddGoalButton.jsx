@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import CrearGoalPopup from './CrearGoalPopup'
+import CreateGoalPopup from './CreateGoalPopup'
 
 export default function AddGoalButton({ onAdd }) {
   const [showPopup, setShowPopup] = useState(false)
@@ -22,7 +22,7 @@ export default function AddGoalButton({ onAdd }) {
       </button>
 
       {showPopup && (
-        <CrearGoalPopup
+        <CreateGoalPopup
           onClose={() => setShowPopup(false)}
           onCreate={onAdd}
         />
