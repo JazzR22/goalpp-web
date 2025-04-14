@@ -61,6 +61,33 @@ export default function Dashboard() {
     }
   }  
 
+  const handleDayToggle = async (goalId, { year, month, day, completed }) => {
+    try {
+      const res = await fetch(`http://localhost:5000/api/goals/${goalId}/day`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({ day: new Date(year, month, day), completed })
+      })
+  
+      const data = await res.json()
+  
+      if (!res.ok) {
+        alert(data.error || 'Failed to update day')
+        return
+      }
+  
+      // update local state
+      setGoals(prev =>
+        prev.map(g => (g._id === goalId ? data.goal : g))
+      )
+    } catch (err) {
+      console.error('Error updating day:', err)
+    }
+  }  
+
   return (
     <div className="dashboard-container">
       <h1>Dashboard</h1>
@@ -82,8 +109,16 @@ export default function Dashboard() {
                   <input
                     type="checkbox"
                     checked={day.completed}
-                    readOnly
+                    onChange={e =>
+                      handleDayToggle(goal._id, {
+                        year: goal.monthData.year,
+                        month: goal.monthData.month,
+                        day: day.day,
+                        completed: e.target.checked
+                      })
+                    }
                   />
+
                   {day.day}
                 </label>
               ))}
