@@ -3,6 +3,8 @@ import '../styles/Dashboard.css'
 import MonthNavigator from '../components/MonthNavigator'
 import AddGoalButton from '../components/AddGoalButton'
 import { useToast } from '../context/ToastContext'
+import DeleteButton from '../components/DeleteButton'
+
 
 export default function Dashboard() {
   const [goals, setGoals] = useState([])
@@ -92,6 +94,33 @@ export default function Dashboard() {
     }
   }  
 
+  const handleDeleteGoal = async (goalId, title) => {
+    const confirmed = await confirm(`Are you sure you want to delete "${title}"?`)
+    if (!confirmed) return
+  
+    try {
+      const res = await fetch(`http://localhost:5000/api/goals/${goalId}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+  
+      const data = await res.json()
+  
+      if (!res.ok) {
+        pushToast(data.message || 'Failed to delete goal', 'error')
+        return
+      }
+  
+      setGoals(prev => prev.filter(g => g._id !== goalId))
+      pushToast(`Goal "${title}" deleted`, 'success')
+    } catch (err) {
+      console.error('Delete error:', err)
+      pushToast('Network error while deleting', 'error')
+    }
+  }  
+
   return (
     <div className="dashboard-container">
       <h1>Dashboard</h1>
@@ -107,6 +136,7 @@ export default function Dashboard() {
         monthGoals.map(goal => (
           <div key={goal._id} className="goal-block">
             <h3>{goal.title}</h3>
+            <DeleteButton onClick={() => handleDeleteGoal(goal._id, goal.title)} />
             <div className="goal-days">
               {goal.monthData.days.map(day => (
                 <label key={day.day}>
