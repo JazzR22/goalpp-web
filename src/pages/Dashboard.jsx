@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import MonthNavigator from '../components/MonthNavigator'
 
 export default function Dashboard() {
   const [goals, setGoals] = useState([])
@@ -38,6 +39,7 @@ export default function Dashboard() {
     <div style={{ padding: '2rem' }}>
       <h1>Dashboard</h1>
 
+      <MonthNavigator month={month} year={year} setMonth={setMonth} setYear={setYear} />
       {monthGoals.length === 0 ? (
         <p>No goals for this month</p>
       ) : (
