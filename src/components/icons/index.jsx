@@ -7,3 +7,4 @@ export { default as Delete } from "./Delete";
 export { default as Check } from "./Check";
 export { default as ArrowR } from "./ArrowR";
 export { default as ArrowL } from "./ArrowL";
+export { default as User } from "./User";
