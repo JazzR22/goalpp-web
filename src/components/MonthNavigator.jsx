@@ -1,4 +1,5 @@
 import '../styles/MonthNavigator.css'
+import Icon from './Icon'
 
 const monthNames = [
   'January', 'February', 'March', 'April', 'May', 'June',
@@ -26,9 +27,13 @@ export default function MonthNavigator({ month, year, setMonth, setYear }) {
 
   return (
     <div className="month-nav">
-      <button onClick={prev}>⬅️</button>
+      <button onClick={prev}>
+      <Icon name="arrowL" size={32} />
+      </button>
       <h2 className="month-title">{monthNames[month]} {year}</h2>
-      <button onClick={next}>➡️</button>
+      <button onClick={next}>
+      <Icon name="arrowR" size={32} />
+      </button>
     </div>
   )
 }

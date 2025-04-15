@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import CreateGoalPopup from './CreateGoalPopup'
+import Icon from './Icon'
 
 export default function AddGoalButton({ onAdd }) {
   const [showPopup, setShowPopup] = useState(false)
@@ -18,7 +19,7 @@ export default function AddGoalButton({ onAdd }) {
           fontWeight: 'bold'
         }}
       >
-        ➕
+        <Icon name="plus" size={32} />
       </button>
 
       {showPopup && (

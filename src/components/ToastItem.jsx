@@ -17,9 +17,9 @@ export default function ToastItem({ message, onClose, type = 'error', duration =
   }, [onClose, duration])
 
   const config = {
-    success: { icon: '✅', bg: '#dbf0e0' },
-    error:   { icon: '❌', bg: '#f0dcdb' },
-    warning: { icon: '⚠️', bg: '#f0eedb' },
+    success: { bg: '#dbf0e0' },
+    error:   { bg: '#f0dcdb' },
+    warning: { bg: '#f0eedb' },
   }
 
   const { icon, bg } = config[type] || config.error
