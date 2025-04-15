@@ -138,7 +138,6 @@ export default function Dashboard() {
         monthGoals.map(goal => (
           <div key={goal._id} className="goal-block">
             <h3>{goal.title}</h3>
-            <DeleteButton onClick={() => handleDeleteGoal(goal._id, goal.title)} />
             <div className="goal-days">
               {goal.monthData.days.map(day => (
                 <label key={day.day}>
@@ -158,6 +157,8 @@ export default function Dashboard() {
                   {day.day}
                 </label>
               ))}
+              
+            <DeleteButton onClick={() => handleDeleteGoal(goal._id, goal.title)} />
             </div>
           </div>
         ))

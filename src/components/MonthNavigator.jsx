@@ -1,5 +1,6 @@
 import '../styles/MonthNavigator.css'
 import Icon from './Icon'
+import GhostButton from './GhostButton'
 
 const monthNames = [
   'January', 'February', 'March', 'April', 'May', 'June',
@@ -27,13 +28,15 @@ export default function MonthNavigator({ month, year, setMonth, setYear }) {
 
   return (
     <div className="month-nav">
-      <button onClick={prev}>
-      <Icon name="arrowL" size={32} />
-      </button>
+      <GhostButton onClick={prev} size={48} >
+        <Icon name="arrowL" size={32} />
+      </GhostButton>
+      
       <h2 className="month-title">{monthNames[month]} {year}</h2>
-      <button onClick={next}>
-      <Icon name="arrowR" size={32} />
-      </button>
+
+      <GhostButton onClick={next} size={48} >
+        <Icon name="arrowR" size={32} />
+      </GhostButton>
     </div>
   )
 }

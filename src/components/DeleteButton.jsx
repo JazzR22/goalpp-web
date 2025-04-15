@@ -1,10 +1,13 @@
-import '../styles/DeleteButton.css'
+
 import Icon from './Icon'
+import GhostButton from './GhostButton'
 
 export default function DeleteButton({ onClick }) {
   return (
-    <button className="delete-button" onClick={onClick}>
-      <Icon name="delete" size={32} />
-    </button>
+    <GhostButton
+      size={48}
+      >
+        <Icon name="delete" size={28} />
+      </GhostButton>
   )
 }
