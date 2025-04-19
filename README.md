@@ -1,12 +1,74 @@
-# React + Vite
+# goalpp-web
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A personal goal-tracking web app built with **React** and **Express**.  
+Create, manage, and track your daily goals with intuitive UI, monthly filters, and visual feedback.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- Register & login with JWT authentication
+- Monthly goal tracking with checkboxes per day
+- Add goals with custom date ranges
+- Update daily progress
+- Delete goals with confirmation
+- Toast notifications for actions
+- Month/year navigation
+- Modular architecture with clean separation of concerns
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## Tech Stack
+
+| Frontend      | Backend       | Styling         |
+| ------------- | ------------- | ----------------|
+| React         | Express       | CSS Modules     |
+| React Router  | JWT Auth      | Date-fns        |
+| Toast Context | MongoDB       | React-DateRange |
+
+---
+
+## Installation
+
+### 1. Clone this repo
+```bash
+git clone https://github.com/JazzR22/goalpp-web.git
+cd goals-app
+```
+
+### 2. Install dependencies
+```bash
+npm install
+```
+
+### 3. Start the frontend
+```bash
+npm run dev
+```
+
+>  Make sure the backend is running on `localhost:5000`
+
+
+---
+
+## Backend Repo
+
+> [🔗 See backend repo](https://github.com/JazzR22/goalpp-api) 
+
+---
+
+## TODO
+- [ ] Daily check page
+- [ ] Month View page
+- [ ] Goal edit support
+- [ ] Progress edit support
+- [ ] Overview Page
+- [ ] Mobile responsive layout
+- [ ] Dark mode toggle
+
+---
+## License
+
+MIT © Jazmin S.R.
+
+>>>>>>> 02607b275ad1fe509b1b30aa63ee61a7baa024c9
